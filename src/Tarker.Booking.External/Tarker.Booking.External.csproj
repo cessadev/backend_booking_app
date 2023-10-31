@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tarker.Booking.Application\Tarker.Booking.Application.csproj" />
+  </ItemGroup>
+
 </Project>
