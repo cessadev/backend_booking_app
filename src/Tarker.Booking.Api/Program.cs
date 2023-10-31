@@ -1,32 +1,35 @@
+using Microsoft.EntityFrameworkCore;
+using Tarker.Booking.Application.Interfaces;
+using Tarker.Booking.Persistence.DataBase;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<DataBaseService>(options =>
+options.UseSqlServer(builder.Configuration["SQLConnectionString"]));
+
+builder.Services.AddScoped<IDataBaseService, DataBaseService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-var summaries = new[]
+app.MapPost("/createTest", async (IDataBaseService _databaseService) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var entity = new Tarker.Booking.Domain.Entities.User.UserEntity
+    {
+        FirstName = "NameTest",
+        LastName = "LastTest",
+        UserName = "UserTest",
+        Password = "12ii1i11"
+    };
+    await _databaseService.User.AddAsync(entity);
+    await _databaseService.SaveAsync();
 
-app.MapGet("/weatherforecast", () =>
+    return "Created Ok";
+});
+
+app.MapGet("/getTest", async (IDataBaseService _databaseService) =>
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    var result = await _databaseService.User.ToListAsync();
+    return result;
 });
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
