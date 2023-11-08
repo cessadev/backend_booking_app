@@ -15,4 +15,13 @@
     <ProjectReference Include="..\Tarker.Booking.Domain\Tarker.Booking.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataBase\Booking\Commands\" />
+    <Folder Include="DataBase\Booking\Queries\" />
+    <Folder Include="DataBase\Customer\Commands\" />
+    <Folder Include="DataBase\Customer\Queries\" />
+    <Folder Include="DataBase\User\Commands\" />
+    <Folder Include="DataBase\User\Queries\" />
+  </ItemGroup>
+
 </Project>

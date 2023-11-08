@@ -3,7 +3,7 @@ using Tarker.Booking.Domain.Entities.Booking;
 using Tarker.Booking.Domain.Entities.Customer;
 using Tarker.Booking.Domain.Entities.User;
 
-namespace Tarker.Booking.Application.Interfaces
+namespace Tarker.Booking.Application.DataBase
 {
     public interface IDataBaseService
     {

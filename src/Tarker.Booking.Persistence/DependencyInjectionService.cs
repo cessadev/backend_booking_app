@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tarker.Booking.Application.Interfaces;
+using Tarker.Booking.Application.DataBase;
 using Tarker.Booking.Persistence.DataBase;
 
 namespace Tarker.Booking.Persistence
